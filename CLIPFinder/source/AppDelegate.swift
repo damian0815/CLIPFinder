@@ -15,6 +15,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
+        
+        let auth = MPFullDiskAccessAuthorizer()
+        if auth.authorizationStatus() != .authorized {
+            auth.requestAuthorization(completion: { status in
+                print("Auth status: \(status)")
+            })
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

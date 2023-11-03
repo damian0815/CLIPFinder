@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D14EEA22AF59DAA0094209E /* AutoExpandingTokenField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D14EEA12AF59DAA0094209E /* AutoExpandingTokenField.swift */; };
+		2D14EEA42AF5B65C0094209E /* NSImage+QuickLook.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D14EEA32AF5B65C0094209E /* NSImage+QuickLook.m */; };
+		2DEC2C8B2AF4385A00E4C35E /* FileCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEC2C892AF4385A00E4C35E /* FileCollectionViewItem.swift */; };
+		2DEC2C8C2AF4385A00E4C35E /* FileCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DEC2C8A2AF4385A00E4C35E /* FileCollectionViewItem.xib */; };
+		2DEC2C8E2AF43AF900E4C35E /* AutoCompleteTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEC2C8D2AF43AF900E4C35E /* AutoCompleteTextField.swift */; };
+		2DEC2C902AF43D5A00E4C35E /* FoldersAutocompleteProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEC2C8F2AF43D5A00E4C35E /* FoldersAutocompleteProvider.swift */; };
+		2DEC2C942AF4423A00E4C35E /* MPFullDiskAccessAuthorizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DEC2C932AF4423A00E4C35E /* MPFullDiskAccessAuthorizer.m */; };
+		2DEC2C9C2AF4EBD500E4C35E /* SearchResultsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEC2C9B2AF4EBD500E4C35E /* SearchResultsProvider.swift */; };
 		2DF99FAF2AF3928C00679E86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF99FAE2AF3928C00679E86 /* AppDelegate.swift */; };
 		2DF99FB12AF3928C00679E86 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF99FB02AF3928C00679E86 /* ViewController.swift */; };
 		2DF99FB32AF3928E00679E86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DF99FB22AF3928E00679E86 /* Assets.xcassets */; };
@@ -14,6 +22,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D14EEA12AF59DAA0094209E /* AutoExpandingTokenField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoExpandingTokenField.swift; sourceTree = "<group>"; };
+		2D14EEA32AF5B65C0094209E /* NSImage+QuickLook.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSImage+QuickLook.m"; sourceTree = "<group>"; };
+		2D14EEA52AF5B6760094209E /* NSImage+QuickLook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSImage+QuickLook.h"; sourceTree = "<group>"; };
+		2DEC2C892AF4385A00E4C35E /* FileCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCollectionViewItem.swift; sourceTree = "<group>"; };
+		2DEC2C8A2AF4385A00E4C35E /* FileCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FileCollectionViewItem.xib; sourceTree = "<group>"; };
+		2DEC2C8D2AF43AF900E4C35E /* AutoCompleteTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoCompleteTextField.swift; sourceTree = "<group>"; };
+		2DEC2C8F2AF43D5A00E4C35E /* FoldersAutocompleteProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersAutocompleteProvider.swift; sourceTree = "<group>"; };
+		2DEC2C922AF4423900E4C35E /* CLIPFinder-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CLIPFinder-Bridging-Header.h"; sourceTree = "<group>"; };
+		2DEC2C932AF4423A00E4C35E /* MPFullDiskAccessAuthorizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPFullDiskAccessAuthorizer.m; sourceTree = "<group>"; };
+		2DEC2C952AF4424E00E4C35E /* MPFullDiskAccessAuthorizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPFullDiskAccessAuthorizer.h; sourceTree = "<group>"; };
+		2DEC2C962AF4427700E4C35E /* MPAuthorizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPAuthorizer.h; sourceTree = "<group>"; };
+		2DEC2C972AF4428F00E4C35E /* MPAuthorizationStatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPAuthorizationStatus.h; sourceTree = "<group>"; };
+		2DEC2C9B2AF4EBD500E4C35E /* SearchResultsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsProvider.swift; sourceTree = "<group>"; };
 		2DF99FAB2AF3928C00679E86 /* CLIPFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CLIPFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DF99FAE2AF3928C00679E86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2DF99FB02AF3928C00679E86 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -33,6 +54,60 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2DEC2C752AF42F3A00E4C35E /* source */ = {
+			isa = PBXGroup;
+			children = (
+				2DEC2C9A2AF4EBB600E4C35E /* ui */,
+				2DEC2C992AF4EBB000E4C35E /* search */,
+				2DEC2C912AF4421900E4C35E /* 3rdparty */,
+				2DF99FAE2AF3928C00679E86 /* AppDelegate.swift */,
+			);
+			path = source;
+			sourceTree = "<group>";
+		};
+		2DEC2C912AF4421900E4C35E /* 3rdparty */ = {
+			isa = PBXGroup;
+			children = (
+				2DEC2C982AF442B800E4C35E /* MPAuthorizer */,
+				2DEC2C922AF4423900E4C35E /* CLIPFinder-Bridging-Header.h */,
+				2D14EEA32AF5B65C0094209E /* NSImage+QuickLook.m */,
+				2D14EEA52AF5B6760094209E /* NSImage+QuickLook.h */,
+			);
+			path = 3rdparty;
+			sourceTree = "<group>";
+		};
+		2DEC2C982AF442B800E4C35E /* MPAuthorizer */ = {
+			isa = PBXGroup;
+			children = (
+				2DEC2C932AF4423A00E4C35E /* MPFullDiskAccessAuthorizer.m */,
+				2DEC2C952AF4424E00E4C35E /* MPFullDiskAccessAuthorizer.h */,
+				2DEC2C962AF4427700E4C35E /* MPAuthorizer.h */,
+				2DEC2C972AF4428F00E4C35E /* MPAuthorizationStatus.h */,
+			);
+			path = MPAuthorizer;
+			sourceTree = "<group>";
+		};
+		2DEC2C992AF4EBB000E4C35E /* search */ = {
+			isa = PBXGroup;
+			children = (
+				2DEC2C9B2AF4EBD500E4C35E /* SearchResultsProvider.swift */,
+			);
+			path = search;
+			sourceTree = "<group>";
+		};
+		2DEC2C9A2AF4EBB600E4C35E /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				2DF99FB02AF3928C00679E86 /* ViewController.swift */,
+				2DEC2C892AF4385A00E4C35E /* FileCollectionViewItem.swift */,
+				2DEC2C8A2AF4385A00E4C35E /* FileCollectionViewItem.xib */,
+				2DEC2C8D2AF43AF900E4C35E /* AutoCompleteTextField.swift */,
+				2DEC2C8F2AF43D5A00E4C35E /* FoldersAutocompleteProvider.swift */,
+				2D14EEA12AF59DAA0094209E /* AutoExpandingTokenField.swift */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
 		2DF99FA22AF3928C00679E86 = {
 			isa = PBXGroup;
 			children = (
@@ -52,8 +127,7 @@
 		2DF99FAD2AF3928C00679E86 /* CLIPFinder */ = {
 			isa = PBXGroup;
 			children = (
-				2DF99FAE2AF3928C00679E86 /* AppDelegate.swift */,
-				2DF99FB02AF3928C00679E86 /* ViewController.swift */,
+				2DEC2C752AF42F3A00E4C35E /* source */,
 				2DF99FB22AF3928E00679E86 /* Assets.xcassets */,
 				2DF99FB42AF3928E00679E86 /* Main.storyboard */,
 				2DF99FB72AF3928E00679E86 /* CLIPFinder.entitlements */,
@@ -93,6 +167,7 @@
 				TargetAttributes = {
 					2DF99FAA2AF3928C00679E86 = {
 						CreatedOnToolsVersion = 14.3.1;
+						LastSwiftMigration = 1430;
 					};
 				};
 			};
@@ -119,6 +194,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DEC2C8C2AF4385A00E4C35E /* FileCollectionViewItem.xib in Resources */,
 				2DF99FB32AF3928E00679E86 /* Assets.xcassets in Resources */,
 				2DF99FB62AF3928E00679E86 /* Main.storyboard in Resources */,
 			);
@@ -131,7 +207,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DEC2C902AF43D5A00E4C35E /* FoldersAutocompleteProvider.swift in Sources */,
+				2D14EEA22AF59DAA0094209E /* AutoExpandingTokenField.swift in Sources */,
+				2DEC2C9C2AF4EBD500E4C35E /* SearchResultsProvider.swift in Sources */,
 				2DF99FB12AF3928C00679E86 /* ViewController.swift in Sources */,
+				2DEC2C942AF4423A00E4C35E /* MPFullDiskAccessAuthorizer.m in Sources */,
+				2D14EEA42AF5B65C0094209E /* NSImage+QuickLook.m in Sources */,
+				2DEC2C8E2AF43AF900E4C35E /* AutoCompleteTextField.swift in Sources */,
+				2DEC2C8B2AF4385A00E4C35E /* FileCollectionViewItem.swift in Sources */,
 				2DF99FAF2AF3928C00679E86 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -268,6 +351,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = CLIPFinder/CLIPFinder.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -286,6 +370,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.damianstewart.CLIPFinder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "CLIPFinder/source/3rdparty/CLIPFinder-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -295,6 +381,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = CLIPFinder/CLIPFinder.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -313,6 +400,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.damianstewart.CLIPFinder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "CLIPFinder/source/3rdparty/CLIPFinder-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
