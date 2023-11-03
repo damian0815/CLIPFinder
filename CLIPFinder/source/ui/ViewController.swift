@@ -8,7 +8,7 @@
 import AppKit
 import UniformTypeIdentifiers
 
-class ViewController: NSViewController {
+class ViewController: NSViewController, NSCollectionViewDelegate {
 
     @IBOutlet weak var filesCollectionView: NSCollectionView!
     @IBOutlet weak var predicateEditor: NSPredicateEditor!
@@ -17,6 +17,8 @@ class ViewController: NSViewController {
     var filesDataSource: NSCollectionViewDiffableDataSource<Int, FileInfo>? = nil
     
     var searchResultsProvider: SearchResultsProviderProtocol? = nil
+    
+    var selectedFiles: [FileInfo] = []
     
     //let tagsAutocompleteProvider = TagsAutocompleteProvider()
     
@@ -90,5 +92,23 @@ class ViewController: NSViewController {
         layout.itemSize = CGSize(width: size, height: size)
         self.filesCollectionView.collectionViewLayout = layout
     }
+    
+    func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
+        print("selected \(indexPaths)")
+        
+        let items = indexPaths.map { self.filesDataSource!.snapshot().itemIdentifiers[$0.item] }
+        self.selectedFiles.append(contentsOf: items)
+        print("selection: \(self.selectedFiles)")
+    }
+        
+    func collectionView(_ collectionView: NSCollectionView, didDeselectItemsAt indexPaths: Set<IndexPath>) {
+        print("deselected \(indexPaths)")
+
+        let items = indexPaths.map { self.filesDataSource!.snapshot().itemIdentifiers[$0.item] }
+        self.selectedFiles.removeAll(where: { items.contains($0) })
+        print("selection: \(self.selectedFiles)")
+    }
+    
+    
 }
 

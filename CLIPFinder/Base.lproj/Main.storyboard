@@ -715,7 +715,7 @@
                                     <rect key="frame" x="1" y="1" width="444" height="407"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <collectionView id="xbC-jT-xgF">
+                                        <collectionView selectable="YES" allowsMultipleSelection="YES" id="xbC-jT-xgF">
                                             <rect key="frame" x="0.0" y="0.0" width="444" height="407"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="J2l-vt-tsa">
@@ -723,6 +723,9 @@
                                                 <edgeInsets key="sectionInset" left="10" right="10" top="10" bottom="10"/>
                                             </collectionViewFlowLayout>
                                             <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="XfG-lQ-9wD" id="5w2-dF-DKy"/>
+                                            </connections>
                                         </collectionView>
                                     </subviews>
                                 </clipView>
