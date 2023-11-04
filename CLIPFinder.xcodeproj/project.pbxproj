@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2D14EEA22AF59DAA0094209E /* AutoExpandingTokenField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D14EEA12AF59DAA0094209E /* AutoExpandingTokenField.swift */; };
 		2D14EEA42AF5B65C0094209E /* NSImage+QuickLook.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D14EEA32AF5B65C0094209E /* NSImage+QuickLook.m */; };
+		2D14EEA72AF5C6B30094209E /* TagWrangler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D14EEA62AF5C6B30094209E /* TagWrangler.swift */; };
 		2DEC2C8B2AF4385A00E4C35E /* FileCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEC2C892AF4385A00E4C35E /* FileCollectionViewItem.swift */; };
 		2DEC2C8C2AF4385A00E4C35E /* FileCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DEC2C8A2AF4385A00E4C35E /* FileCollectionViewItem.xib */; };
 		2DEC2C8E2AF43AF900E4C35E /* AutoCompleteTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEC2C8D2AF43AF900E4C35E /* AutoCompleteTextField.swift */; };
@@ -25,6 +26,7 @@
 		2D14EEA12AF59DAA0094209E /* AutoExpandingTokenField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoExpandingTokenField.swift; sourceTree = "<group>"; };
 		2D14EEA32AF5B65C0094209E /* NSImage+QuickLook.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSImage+QuickLook.m"; sourceTree = "<group>"; };
 		2D14EEA52AF5B6760094209E /* NSImage+QuickLook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSImage+QuickLook.h"; sourceTree = "<group>"; };
+		2D14EEA62AF5C6B30094209E /* TagWrangler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagWrangler.swift; sourceTree = "<group>"; };
 		2DEC2C892AF4385A00E4C35E /* FileCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCollectionViewItem.swift; sourceTree = "<group>"; };
 		2DEC2C8A2AF4385A00E4C35E /* FileCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FileCollectionViewItem.xib; sourceTree = "<group>"; };
 		2DEC2C8D2AF43AF900E4C35E /* AutoCompleteTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoCompleteTextField.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				2DEC2C8D2AF43AF900E4C35E /* AutoCompleteTextField.swift */,
 				2DEC2C8F2AF43D5A00E4C35E /* FoldersAutocompleteProvider.swift */,
 				2D14EEA12AF59DAA0094209E /* AutoExpandingTokenField.swift */,
+				2D14EEA62AF5C6B30094209E /* TagWrangler.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 				2DF99FB12AF3928C00679E86 /* ViewController.swift in Sources */,
 				2DEC2C942AF4423A00E4C35E /* MPFullDiskAccessAuthorizer.m in Sources */,
 				2D14EEA42AF5B65C0094209E /* NSImage+QuickLook.m in Sources */,
+				2D14EEA72AF5C6B30094209E /* TagWrangler.swift in Sources */,
 				2DEC2C8E2AF43AF900E4C35E /* AutoCompleteTextField.swift in Sources */,
 				2DEC2C8B2AF4385A00E4C35E /* FileCollectionViewItem.swift in Sources */,
 				2DF99FAF2AF3928C00679E86 /* AppDelegate.swift in Sources */,

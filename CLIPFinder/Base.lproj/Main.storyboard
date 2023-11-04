@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21701"/>
+        <capability name="Combo buttons" minToolsVersion="14.0" minSystemVersion="13.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -858,17 +859,6 @@
                                     <action selector="rootFolderTextFieldDidChange:" target="XfG-lQ-9wD" id="5eo-x0-Sre"/>
                                 </connections>
                             </textField>
-                            <tokenField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Bal-uD-LD6">
-                                <rect key="frame" x="474" y="436" width="150" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="pd2-Sw-xmg"/>
-                                </constraints>
-                                <tokenFieldCell key="cell" selectable="YES" editable="YES" borderStyle="bezel" alignment="left" drawsBackground="YES" allowsEditingTextAttributes="YES" id="K0V-xj-49Y">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </tokenFieldCell>
-                            </tokenField>
                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hBu-hj-Ghb">
                                 <rect key="frame" x="372" y="14" width="96" height="28"/>
                                 <constraints>
@@ -879,6 +869,32 @@
                                     <action selector="iconSizeSliderChanged:" target="XfG-lQ-9wD" id="Tjc-9S-8g2"/>
                                 </connections>
                             </slider>
+                            <comboButton verticalHuggingPriority="750" baseWritingDirection="leftToRight" alignment="center" title="Tag sort" imageScaling="proportionallyDown" translatesAutoresizingMaskIntoConstraints="NO" id="EvN-Ih-kMy">
+                                <rect key="frame" x="543" y="435" width="84" height="24"/>
+                                <menu key="menu" id="8jp-7y-YjX">
+                                    <items>
+                                        <menuItem title="Original order" id="PVk-ys-OB8" userLabel="Original order"/>
+                                        <menuItem title="Alphabetical" tag="1" id="whQ-fI-1rD" userLabel="Alphabetical"/>
+                                        <menuItem title="By frequency" tag="2" id="GbJ-sT-nUH">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                                <connections>
+                                    <action selector="tagSortComboBoxChanged:" target="XfG-lQ-9wD" id="jbT-Bm-7rv"/>
+                                </connections>
+                            </comboButton>
+                            <tokenField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Bal-uD-LD6" customClass="AutoExpandingTokenField" customModule="CLIPFinder" customModuleProvider="target">
+                                <rect key="frame" x="474" y="408" width="150" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="pd2-Sw-xmg"/>
+                                </constraints>
+                                <tokenFieldCell key="cell" selectable="YES" editable="YES" borderStyle="bezel" alignment="left" drawsBackground="YES" allowsEditingTextAttributes="YES" id="K0V-xj-49Y">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </tokenFieldCell>
+                            </tokenField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="rIe-xT-0GM" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" symbolic="YES" id="4lV-kE-k5Z"/>
@@ -886,10 +902,12 @@
                             <constraint firstItem="rIe-xT-0GM" firstAttribute="width" secondItem="Zez-1e-4Y4" secondAttribute="width" multiplier="0.5" id="6d4-uc-jeL"/>
                             <constraint firstItem="fOA-W5-4z2" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="8Ul-K7-4sY"/>
                             <constraint firstItem="hBu-hj-Ghb" firstAttribute="trailing" secondItem="fOA-W5-4z2" secondAttribute="trailing" id="AcX-kl-Se8"/>
-                            <constraint firstItem="Bal-uD-LD6" firstAttribute="top" secondItem="Zez-1e-4Y4" secondAttribute="bottom" constant="8" symbolic="YES" id="H3p-mW-G2r"/>
                             <constraint firstItem="hBu-hj-Ghb" firstAttribute="top" secondItem="fOA-W5-4z2" secondAttribute="bottom" constant="8" symbolic="YES" id="I3M-Ca-JbD"/>
+                            <constraint firstItem="Bal-uD-LD6" firstAttribute="top" secondItem="EvN-Ih-kMy" secondAttribute="bottom" constant="8" symbolic="YES" id="Kn2-Mx-s1d"/>
+                            <constraint firstItem="EvN-Ih-kMy" firstAttribute="top" secondItem="Zez-1e-4Y4" secondAttribute="bottom" constant="8" symbolic="YES" id="QQe-Vo-SQV"/>
                             <constraint firstItem="Zez-1e-4Y4" firstAttribute="top" secondItem="rIe-xT-0GM" secondAttribute="bottom" constant="8" symbolic="YES" id="Y15-FF-4yG"/>
                             <constraint firstItem="Zez-1e-4Y4" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="YFW-xh-iET"/>
+                            <constraint firstAttribute="trailing" secondItem="EvN-Ih-kMy" secondAttribute="trailing" constant="20" symbolic="YES" id="ah2-Ku-tf7"/>
                             <constraint firstItem="rIe-xT-0GM" firstAttribute="leading" secondItem="NF6-hi-Qj9" secondAttribute="trailing" constant="8" symbolic="YES" id="eJh-I1-8Lp"/>
                             <constraint firstAttribute="trailing" secondItem="Zez-1e-4Y4" secondAttribute="trailing" constant="20" symbolic="YES" id="jDk-8E-HzP"/>
                             <constraint firstItem="fOA-W5-4z2" firstAttribute="top" secondItem="Zez-1e-4Y4" secondAttribute="bottom" constant="8" symbolic="YES" id="lRj-zB-oTx"/>
@@ -904,6 +922,7 @@
                         <outlet property="openRootFolderButton" destination="NF6-hi-Qj9" id="qvk-Xz-PL5"/>
                         <outlet property="predicateEditor" destination="b5Y-ur-NqZ" id="yZ4-nC-qj2"/>
                         <outlet property="rootFolderTextField" destination="rIe-xT-0GM" id="CgW-z7-Ejq"/>
+                        <outlet property="tagsTokenField" destination="Bal-uD-LD6" id="ctu-cW-KxB"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

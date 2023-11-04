@@ -8,11 +8,12 @@
 import AppKit
 import UniformTypeIdentifiers
 
-class ViewController: NSViewController, NSCollectionViewDelegate {
+class ViewController: NSViewController, NSCollectionViewDelegate, NSTokenFieldDelegate {
 
     @IBOutlet weak var filesCollectionView: NSCollectionView!
     @IBOutlet weak var predicateEditor: NSPredicateEditor!
     @IBOutlet weak var rootFolderTextField: NSTextField!
+    @IBOutlet weak var tagsTokenField: AutoExpandingTokenField!
     
     var filesDataSource: NSCollectionViewDiffableDataSource<Int, FileInfo>? = nil
     
@@ -50,6 +51,7 @@ class ViewController: NSViewController, NSCollectionViewDelegate {
         }
         self.searchResultsProvider = searchResultsProvider
         
+        self.tagsTokenField.delegate = self
     }
 
     override var representedObject: Any? {
@@ -99,6 +101,8 @@ class ViewController: NSViewController, NSCollectionViewDelegate {
         let items = indexPaths.map { self.filesDataSource!.snapshot().itemIdentifiers[$0.item] }
         self.selectedFiles.append(contentsOf: items)
         print("selection: \(self.selectedFiles)")
+        
+        updateTags()
     }
         
     func collectionView(_ collectionView: NSCollectionView, didDeselectItemsAt indexPaths: Set<IndexPath>) {
@@ -107,8 +111,47 @@ class ViewController: NSViewController, NSCollectionViewDelegate {
         let items = indexPaths.map { self.filesDataSource!.snapshot().itemIdentifiers[$0.item] }
         self.selectedFiles.removeAll(where: { items.contains($0) })
         print("selection: \(self.selectedFiles)")
+        
+        updateTags()
     }
     
+    func updateTags() {
+        
+        let urls = self.selectedFiles.map { $0.url }
+        
+        let tagsPerUrl = urls.map {
+            do {
+                return try $0.resourceValues(forKeys: [.tagNamesKey]).tagNames ?? []
+            } catch {
+                print("error gettings tags for \($0): \(error)")
+                return []
+            }
+        }
+        
+        let uniqueTags = tagsPerUrl.reduce([String]()) { allTags, thisTags in
+            let newTags = thisTags.filter { !allTags.contains($0) }
+            return allTags + newTags
+        }
+        let commonTags = uniqueTags.filter { uniqueTag in
+            tagsPerUrl.allSatisfy { $0.contains(uniqueTag) }
+        }
+        
+        self.tagsTokenField.objectValue = uniqueTags.map { TagInfo(tag: $0, isCommon: commonTags.contains($0)) }
+    }
+
+    func tokenField(_ tokenField: NSTokenField, displayStringForRepresentedObject representedObject: Any) -> String? {
+        let tagInfo = representedObject as! TagInfo
+        return tagInfo.tag
+    }
     
+    func tokenField(_ tokenField: NSTokenField, styleForRepresentedObject representedObject: Any) -> NSTokenField.TokenStyle {
+        let tagInfo = representedObject as! TagInfo
+        return tagInfo.isCommon ? .rounded : .plainSquared
+    }
+        
+    @IBAction func tagSortComboBoxChanged(_ sender: Any) {
+        print("todo: handl tag sort change")
+    }
 }
+
 
