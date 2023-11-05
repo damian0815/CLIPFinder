@@ -9,11 +9,14 @@ import AppKit
 import UniformTypeIdentifiers
 
 class ViewController: NSViewController, NSCollectionViewDelegate, NSTokenFieldDelegate {
-
+    
     @IBOutlet weak var filesCollectionView: NSCollectionView!
     @IBOutlet weak var predicateEditor: NSPredicateEditor!
     @IBOutlet weak var rootFolderTextField: NSTextField!
     @IBOutlet weak var tagsTokenField: AutoExpandingTokenField!
+    @IBOutlet weak var sortOrderComboBox: NSComboBox!
+    
+    var tagsTokenFieldController: TagsTokenFieldController!
     
     var filesDataSource: NSCollectionViewDiffableDataSource<Int, FileInfo>? = nil
     
@@ -25,7 +28,9 @@ class ViewController: NSViewController, NSCollectionViewDelegate, NSTokenFieldDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.updateIconSizes(iconSizePercent: 0.5)
+        
         self.filesCollectionView.register(
             NSNib(nibNamed: "FileCollectionViewItem", bundle: Bundle.main),
             forItemWithIdentifier: FileCollectionViewItem.identifier)
@@ -51,12 +56,15 @@ class ViewController: NSViewController, NSCollectionViewDelegate, NSTokenFieldDe
         }
         self.searchResultsProvider = searchResultsProvider
         
-        self.tagsTokenField.delegate = self
+        self.sortOrderComboBox.selectItem(at: 1)
+        self.tagsTokenFieldController = TagsTokenFieldController(tagsTokenField: self.tagsTokenField)
+        self.tagsTokenFieldController.sortOrder = .ByFrequency
+        self.tagsTokenField.delegate = self.tagsTokenFieldController
     }
-
+    
     override var representedObject: Any? {
         didSet {
-        // Update the view, if already loaded.
+            // Update the view, if already loaded.
         }
     }
     
@@ -75,7 +83,7 @@ class ViewController: NSViewController, NSCollectionViewDelegate, NSTokenFieldDe
         }
     }
     
-
+    
     @IBAction func openRootFolderButtonPressed(_ sender: Any) {
         let openPanel = NSOpenPanel()
         openPanel.canChooseFiles = false
@@ -87,8 +95,11 @@ class ViewController: NSViewController, NSCollectionViewDelegate, NSTokenFieldDe
     
     @IBAction func iconSizeSliderChanged(_ sender: Any) {
         let slider = sender as! NSSlider
-        //let size = CGFloat(50 + log(slider.floatValue) * 300)
-        let size = CGFloat(50 + slider.floatValue * 300)
+        self.updateIconSizes(iconSizePercent: slider.floatValue)
+    }
+    
+    func updateIconSizes(iconSizePercent: Float) {
+        let size = CGFloat(50 + iconSizePercent * 300)
 
         let layout = (self.filesCollectionView.collectionViewLayout as? NSCollectionViewFlowLayout) ?? NSCollectionViewFlowLayout()
         layout.itemSize = CGSize(width: size, height: size)
@@ -102,7 +113,7 @@ class ViewController: NSViewController, NSCollectionViewDelegate, NSTokenFieldDe
         self.selectedFiles.append(contentsOf: items)
         print("selection: \(self.selectedFiles)")
         
-        updateTags()
+        self.tagsTokenFieldController.updateTags(forSelectedFiles: self.selectedFiles)
     }
         
     func collectionView(_ collectionView: NSCollectionView, didDeselectItemsAt indexPaths: Set<IndexPath>) {
@@ -112,45 +123,24 @@ class ViewController: NSViewController, NSCollectionViewDelegate, NSTokenFieldDe
         self.selectedFiles.removeAll(where: { items.contains($0) })
         print("selection: \(self.selectedFiles)")
         
-        updateTags()
+        self.tagsTokenFieldController.updateTags(forSelectedFiles: self.selectedFiles)
     }
     
-    func updateTags() {
-        
-        let urls = self.selectedFiles.map { $0.url }
-        
-        let tagsPerUrl = urls.map {
-            do {
-                return try $0.resourceValues(forKeys: [.tagNamesKey]).tagNames ?? []
-            } catch {
-                print("error gettings tags for \($0): \(error)")
-                return []
-            }
-        }
-        
-        let uniqueTags = tagsPerUrl.reduce([String]()) { allTags, thisTags in
-            let newTags = thisTags.filter { !allTags.contains($0) }
-            return allTags + newTags
-        }
-        let commonTags = uniqueTags.filter { uniqueTag in
-            tagsPerUrl.allSatisfy { $0.contains(uniqueTag) }
-        }
-        
-        self.tagsTokenField.objectValue = uniqueTags.map { TagInfo(tag: $0, isCommon: commonTags.contains($0)) }
-    }
 
-    func tokenField(_ tokenField: NSTokenField, displayStringForRepresentedObject representedObject: Any) -> String? {
-        let tagInfo = representedObject as! TagInfo
-        return tagInfo.tag
-    }
-    
-    func tokenField(_ tokenField: NSTokenField, styleForRepresentedObject representedObject: Any) -> NSTokenField.TokenStyle {
-        let tagInfo = representedObject as! TagInfo
-        return tagInfo.isCommon ? .rounded : .plainSquared
-    }
-        
     @IBAction func tagSortComboBoxChanged(_ sender: Any) {
-        print("todo: handl tag sort change")
+        print("todo: handle tag sort change")
+        let tagSortComboBox = sender as! NSComboBox
+        let sortOrderString = tagSortComboBox.stringValue
+        switch sortOrderString {
+        case "Alphabetical":
+            self.tagsTokenFieldController.sortOrder = .Alphabetical
+        case "Original":
+            self.tagsTokenFieldController.sortOrder = .Original
+        case "By frequency":
+            self.tagsTokenFieldController.sortOrder = .ByFrequency
+        default:
+            assert(false, "Missing case")
+        }
     }
 }
 

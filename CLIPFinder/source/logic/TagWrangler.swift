@@ -6,8 +6,3 @@
 //
 
 import Foundation
-
-struct TagInfo {
-    let tag: String
-    let isCommon: Bool
-}

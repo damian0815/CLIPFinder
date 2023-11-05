@@ -6,11 +6,14 @@
 //
 
 import Foundation
+import UniformTypeIdentifiers
 
 struct FileInfo: Hashable {
     let url: URL
     let distance: Float
 }
+import Foundation
+
 
 protocol SearchResultsProviderProtocol {
     
@@ -19,10 +22,18 @@ protocol SearchResultsProviderProtocol {
     func setRootFolder(_ folder: String) async
 }
 
-public func enumerateFolderContentsRecursive(_ rootURL: URL, partialResultsCallback: (([URL]) -> Void)? = nil) async -> [URL] {
+public func enumerateFolderContentsRecursive(_ rootURL: URL, types: Set<UTType>, partialResultsCallback: (([URL]) -> Void)? = nil) async -> [URL] {
     func getDirectoryContents(_ url: URL) -> [URL] {
         do {
-            return try FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: [.isDirectoryKey])
+            let urls = try FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: [.isDirectoryKey])
+            return urls.filter {
+                do {
+                    guard let type = try $0.resourceValues(forKeys: [.contentTypeKey]).contentType else { return false }
+                    return types.contains(where: { type.conforms(to: $0) })
+                } catch {
+                    return false
+                }
+            }
         } catch {
             print("error enumerating contents of \(url): \(error)")
             return []
@@ -36,6 +47,8 @@ public func enumerateFolderContentsRecursive(_ rootURL: URL, partialResultsCallb
     var lastPartialResultsTime = ContinuousClock.now
     let partialResultsInterval = ContinuousClock.Duration(secondsComponent: 1, attosecondsComponent: 0)
 
+    
+    
     while !queue.isEmpty {
         if Task.isCancelled {
             return []
@@ -82,7 +95,7 @@ actor BaseSearchResultsProvider: SearchResultsProviderProtocol {
         }
         
         self.enumerationTask = Task {
-            let results = await enumerateFolderContentsRecursive(URL(filePath: self.rootFolder, directoryHint: .isDirectory),
+            let results = await enumerateFolderContentsRecursive(URL(filePath: self.rootFolder, directoryHint: .isDirectory), types: [UTType.image],
                                                    partialResultsCallback: { partialResults in
                 //self.newResultsCallback(partialResults.map { FileInfo(path: $0.path(percentEncoded: false), distance: 0) })
             })

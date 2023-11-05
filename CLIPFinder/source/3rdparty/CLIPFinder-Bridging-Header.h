@@ -5,3 +5,8 @@
 #import "MPAuthorizer/MPFullDiskAccessAuthorizer.h"
 #import "NSImage+QuickLook.h"
 
+
+@import Foundation;
+@import CoreServices;
+
+extern const CFStringRef kMDItemUserTags;
