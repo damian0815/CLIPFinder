@@ -11,6 +11,7 @@
 		2D14EEA42AF5B65C0094209E /* NSImage+QuickLook.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D14EEA32AF5B65C0094209E /* NSImage+QuickLook.m */; };
 		2DA686F12AF68FAA002C1D83 /* TagsTokenFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA686F02AF68FAA002C1D83 /* TagsTokenFieldController.swift */; };
 		2DA686F32AF76F78002C1D83 /* TagsAndColorsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA686F22AF76F78002C1D83 /* TagsAndColorsProvider.swift */; };
+		2DA686F92AF78276002C1D83 /* XAttr in Frameworks */ = {isa = PBXBuildFile; productRef = 2DA686F82AF78276002C1D83 /* XAttr */; };
 		2DEC2C8B2AF4385A00E4C35E /* FileCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEC2C892AF4385A00E4C35E /* FileCollectionViewItem.swift */; };
 		2DEC2C8C2AF4385A00E4C35E /* FileCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DEC2C8A2AF4385A00E4C35E /* FileCollectionViewItem.xib */; };
 		2DEC2C8E2AF43AF900E4C35E /* AutoCompleteTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEC2C8D2AF43AF900E4C35E /* AutoCompleteTextField.swift */; };
@@ -52,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DA686F92AF78276002C1D83 /* XAttr in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +159,9 @@
 			dependencies = (
 			);
 			name = CLIPFinder;
+			packageProductDependencies = (
+				2DA686F82AF78276002C1D83 /* XAttr */,
+			);
 			productName = CLIPFinder;
 			productReference = 2DF99FAB2AF3928C00679E86 /* CLIPFinder.app */;
 			productType = "com.apple.product-type.application";
@@ -186,6 +191,9 @@
 				Base,
 			);
 			mainGroup = 2DF99FA22AF3928C00679E86;
+			packageReferences = (
+				2DA686F72AF78276002C1D83 /* XCRemoteSwiftPackageReference "swift-xattr" */,
+			);
 			productRefGroup = 2DF99FAC2AF3928C00679E86 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -435,6 +443,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2DA686F72AF78276002C1D83 /* XCRemoteSwiftPackageReference "swift-xattr" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jozefizso/swift-xattr";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2DA686F82AF78276002C1D83 /* XAttr */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2DA686F72AF78276002C1D83 /* XCRemoteSwiftPackageReference "swift-xattr" */;
+			productName = XAttr;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2DF99FA32AF3928C00679E86 /* Project object */;
 }

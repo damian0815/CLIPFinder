@@ -12,6 +12,9 @@ class FileCollectionViewItem: NSCollectionViewItem {
     static let identifier = NSUserInterfaceItemIdentifier("FileCollectionViewItem")
 
     @IBOutlet weak var selectionHighlightBox: NSBox!
+    
+    private var tagDotsLayer: CALayer? = nil
+    
     private var fileInfo: FileInfo?
     private var tags: [Tag] = []
     
@@ -31,26 +34,27 @@ class FileCollectionViewItem: NSCollectionViewItem {
         self.selectionHighlightBox.isHidden = true
         self.tags = []
         self.fileInfo = nil
+        self.tagDotsLayer?.removeFromSuperlayer()
+        self.tagDotsLayer = nil
     }
     
     func populate(with file: FileInfo) {
         self.fileInfo = file
         
-        let fileName = file.url.lastPathComponent
-        let tagsImage = TagsAndColorsProvider.shared.makeTagDotsLayer(for: file.url, height: self.textField!.bounds.height)
-        //self.textField?.attributedStringValue = AttributedString(NSAttributedString(attachment: tagsImage))
-
-        /*NSImage * pic = [[NSImage alloc] initWithContentsOfFile:@"/Users/Anne/Desktop/Sample.png"];
-        NSTextAttachmentCell *attachmentCell = [[NSTextAttachmentCell alloc] initImageCell:pic];
-        NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
-        [attachment setAttachmentCell: attachmentCell ];
-        NSAttributedString *attributedString = [NSAttributedString  attributedStringWithAttachment: attachment];
-        [[textView textStorage] appendAttributedString:attributedString];*/
+        self.tagDotsLayer = TagsAndColorsProvider.shared.makeTagDotsLayer(for: file.url, height: self.textField?.frame.height ?? 0)
+        if let tagDotsLayer = self.tagDotsLayer {
+            //let inset: CGFloat = 10
+            let xOrigin = (self.textField?.frame.midX ?? 0) - tagDotsLayer.bounds.width/2
+            let yOrigin = (self.textField?.frame.midY ?? 0) - tagDotsLayer.bounds.height/2
+            tagDotsLayer.frame = NSRect(x: xOrigin, y: yOrigin, width: tagDotsLayer.bounds.width, height: tagDotsLayer.bounds.height)
+            tagDotsLayer.opacity = 0.7
+            //tagDotsLayer.borderColor = NSColor.black.cgColor
+            //tagDotsLayer.borderWidth = 1
+            self.view.layer!.addSublayer(tagDotsLayer)
+        }
         
         self.textField?.stringValue = file.url.lastPathComponent
-        
         self.tags = TagsAndColorsProvider.shared.getTags(for: file.url)
-        
         self.enqueueSlowDataFetch()
     }
     

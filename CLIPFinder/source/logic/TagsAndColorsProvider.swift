@@ -6,60 +6,72 @@
 //
 
 import Foundation
+import XAttr
 
 struct Tag: Equatable, Hashable {
     let name: String
-    let color: NSColor
+    let color: NSColor?
 }
 
 class TagsAndColorsProvider {
     
     public static var shared = TagsAndColorsProvider()
-    private static var tagsAndColors: [String:NSColor] = [:]
- 
+    private var colors: [NSColor] = []
+    
     func getTags(for url: URL) -> [Tag] {
         do {
             //test($0)
-            let tagNames = try url.resourceValues(forKeys: [.tagNamesKey]).tagNames ?? []
-            return tagNames.map { Tag(name: $0, color: Self.tagsAndColors[$0] ?? NSColor.gray) }
+            let tagsXattrName = "com.apple.metadata:_kMDItemUserTags"
+            let tagsBinaryPropertyList = try url.extendedAttributeValue(forName: tagsXattrName)
+            let tags:[String] = try PropertyListDecoder().decode([String].self, from: tagsBinaryPropertyList)
+            return tags.map {
+                let tagAndMaybeColor = $0.split(separator: "\n")
+                if tagAndMaybeColor.count == 1 {
+                    return Tag(name: $0, color: nil)
+                }
+                let colorIndex = Int(tagAndMaybeColor[1])!
+                return Tag(name: String(tagAndMaybeColor[0]), color: self.colors[colorIndex])
+            }
         } catch {
-            print("error gettings tags for \(url): \(error)")
+            //print("error gettings tags for \(url): \(error)")
             return []
         }
     }
     
     
     private init() {
-        
-        if Self.tagsAndColors.isEmpty {
-            Self.tagsAndColors = Self.getTagsAndColorsFromWorkspace()
-            NotificationCenter.default.addObserver(forName: NSWorkspace.didChangeFileLabelsNotification, object: nil, queue: nil) { note in
-                let workspace = note.object as! NSWorkspace
-                Task { @MainActor in
-                    Self.tagsAndColors = Self.getTagsAndColorsFromWorkspace(workspace)
-                }
-            }
+        self.colors = NSWorkspace.shared.fileLabelColors
+        NotificationCenter.default.addObserver(forName: NSWorkspace.didChangeFileLabelsNotification, object: nil, queue: nil) { note in
+            self.colors = NSWorkspace.shared.fileLabelColors
         }
     }
 
-    static func getTagsAndColorsFromWorkspace(_ workspace: NSWorkspace = NSWorkspace.shared) -> [String: NSColor] {
-        let labels = NSWorkspace.shared.fileLabels
-        let colors = NSWorkspace.shared.fileLabelColors
-        let labelsAndColors = labels.enumerated().map { ($0.element, colors[$0.offset]) }
-        return Dictionary(uniqueKeysWithValues: labelsAndColors)
-    }
-    
-    func makeTagDotsLayer(for url: URL, height: CGFloat) -> CAShapeLayer {
+    func makeTagDotsLayer(for url: URL, height: CGFloat) -> CAShapeLayer? {
         
         let tags = self.getTags(for: url)
-        
-        let dots = tags.filter { $0.color != NSColor.gray }
-        
-        
+        let dotColors = tags.compactMap { $0.color }
+        if dotColors.isEmpty {
+            return nil
+        }
+
         let layer = CAShapeLayer()
-        
-        let dotDiameter = height - 2
-        layer.bounds = CGRect(x: 0, y: 0, width: 1.0 + (CGFloat(dots.count) * 0.3) * dotDiameter, height: height)
+        let inset = CGFloat(1)
+        let dotDiameter = height - 2*inset
+        let dotOverlap = 0.5
+        layer.bounds = CGRect(x: 0, y: 0, width: 2*inset + (1 + CGFloat(dotColors.count-1) * dotOverlap) * dotDiameter, height: height)
+        for (i,c) in dotColors.enumerated().reversed() {
+            let startX = inset + CGFloat(i) * dotOverlap * dotDiameter
+            let startY = inset
+            let path = CGPath(ellipseIn: CGRect(x: 0, y: 0, width: dotDiameter, height: dotDiameter), transform: nil)
+            let dotLayer = CAShapeLayer()
+            dotLayer.backgroundColor = CGColor.clear
+            dotLayer.path = path
+            dotLayer.fillColor = c.cgColor
+            //dotLayer.strokeColor = NSColor.gray.cgColor
+            //dotLayer.lineWidth = 0.5
+            dotLayer.frame = CGRect(x: startX, y: startY, width: dotDiameter, height: dotDiameter)
+            layer.addSublayer(dotLayer)
+        }
         return layer
         
     }
