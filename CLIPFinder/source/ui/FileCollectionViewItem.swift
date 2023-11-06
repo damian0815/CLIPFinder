@@ -34,6 +34,7 @@ class FileCollectionViewItem: NSCollectionViewItem {
         self.selectionHighlightBox.isHidden = true
         self.tags = []
         self.fileInfo = nil
+        self.imageView?.image = nil
         self.tagDotsLayer?.removeFromSuperlayer()
         self.tagDotsLayer = nil
     }
@@ -60,14 +61,17 @@ class FileCollectionViewItem: NSCollectionViewItem {
     
     func enqueueSlowDataFetch() {
         let fileInfo = self.fileInfo!
+        let size = CGSize(width: Int(self.imageView!.frame.size.width), height: Int(self.imageView!.frame.size.height))
+
         Task {
-            if fileInfo != self.fileInfo {
-                // reused
-                return
-            }
-            let iconSize = CGSize(width: Int(self.imageView!.frame.size.width), height: Int(self.imageView!.frame.size.height))
-            self.imageView?.image = NSImage.init(previewOfFileAtPath: fileInfo.url.path(percentEncoded: false), of: iconSize, asIcon: false)
-            
+            await ThumbnailFetcher.shared.enqueueThumbnailFetch(for: fileInfo.url,
+                                                                size: size,
+                                                                isCancelled: { self.fileInfo != fileInfo },
+                                                                result: { image in
+                Task { @MainActor in
+                    self.imageView?.image = image
+                }
+            })
         }
     }
     

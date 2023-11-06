@@ -59,14 +59,9 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="File" id="bib-Uj-vzu">
                                     <items>
-                                        <menuItem title="New" keyEquivalent="n" id="Was-JA-tGl">
-                                            <connections>
-                                                <action selector="newDocument:" target="Ady-hI-5gd" id="4Si-XN-c54"/>
-                                            </connections>
-                                        </menuItem>
                                         <menuItem title="Open…" keyEquivalent="o" id="IAo-SY-fd9">
                                             <connections>
-                                                <action selector="openDocument:" target="Ady-hI-5gd" id="bVn-NM-KNZ"/>
+                                                <action selector="openMenuItemSelected:" target="Voe-Tx-rLC" id="O2i-Ve-WdU"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Open Recent" id="tXI-mr-wws">
@@ -81,39 +76,6 @@
                                                     </menuItem>
                                                 </items>
                                             </menu>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="m54-Is-iLE"/>
-                                        <menuItem title="Close" keyEquivalent="w" id="DVo-aG-piG">
-                                            <connections>
-                                                <action selector="performClose:" target="Ady-hI-5gd" id="HmO-Ls-i7Q"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Save…" keyEquivalent="s" id="pxx-59-PXV">
-                                            <connections>
-                                                <action selector="saveDocument:" target="Ady-hI-5gd" id="teZ-XB-qJY"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Save As…" keyEquivalent="S" id="Bw7-FT-i3A">
-                                            <connections>
-                                                <action selector="saveDocumentAs:" target="Ady-hI-5gd" id="mDf-zr-I0C"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Revert to Saved" keyEquivalent="r" id="KaW-ft-85H">
-                                            <connections>
-                                                <action selector="revertDocumentToSaved:" target="Ady-hI-5gd" id="iJ3-Pv-kwq"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="aJh-i4-bef"/>
-                                        <menuItem title="Page Setup…" keyEquivalent="P" id="qIS-W8-SiK">
-                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
-                                            <connections>
-                                                <action selector="runPageLayout:" target="Ady-hI-5gd" id="Din-rz-gC5"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Print…" keyEquivalent="p" id="aTl-1u-JFS">
-                                            <connections>
-                                                <action selector="print:" target="Ady-hI-5gd" id="qaZ-4w-aoO"/>
-                                            </connections>
                                         </menuItem>
                                     </items>
                                 </menu>
@@ -710,13 +672,13 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fOA-W5-4z2">
-                                <rect key="frame" x="20" y="48" width="446" height="409"/>
+                                <rect key="frame" x="20" y="48" width="446" height="402"/>
                                 <clipView key="contentView" id="VGE-XA-kBq">
-                                    <rect key="frame" x="1" y="1" width="444" height="407"/>
+                                    <rect key="frame" x="1" y="1" width="444" height="400"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <collectionView selectable="YES" allowsMultipleSelection="YES" id="xbC-jT-xgF">
-                                            <rect key="frame" x="0.0" y="0.0" width="444" height="407"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="444" height="400"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="J2l-vt-tsa">
                                                 <size key="itemSize" width="100" height="50"/>
@@ -734,12 +696,12 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="UP5-L4-dHe">
-                                    <rect key="frame" x="429" y="1" width="16" height="407"/>
+                                    <rect key="frame" x="429" y="1" width="16" height="390"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zez-1e-4Y4">
-                                <rect key="frame" x="20" y="465" width="604" height="86"/>
+                                <rect key="frame" x="20" y="458" width="604" height="86"/>
                                 <clipView key="contentView" id="MQr-3w-W4g">
                                     <rect key="frame" x="1" y="1" width="602" height="84"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -838,8 +800,12 @@
                                 </scroller>
                             </scrollView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NF6-hi-Qj9">
-                                <rect key="frame" x="19" y="556" width="30" height="23"/>
-                                <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="folder" catalog="system" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bky-TZ-eaw">
+                                <rect key="frame" x="14" y="548" width="46" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="H5G-30-es3"/>
+                                    <constraint firstAttribute="width" constant="34" id="z6q-cS-GLc"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" bezelStyle="rounded" image="folder" catalog="system" imagePosition="only" alignment="center" controlSize="large" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bky-TZ-eaw">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -848,8 +814,8 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rIe-xT-0GM">
-                                <rect key="frame" x="56" y="559" width="302" height="21"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="2Yn-Wt-elY">
+                                <rect key="frame" x="62" y="559" width="302" height="21"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="2Yn-Wt-elY">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -869,7 +835,7 @@
                                 </connections>
                             </slider>
                             <tokenField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Bal-uD-LD6" customClass="AutoExpandingTokenField" customModule="CLIPFinder" customModuleProvider="target">
-                                <rect key="frame" x="474" y="408" width="150" height="21"/>
+                                <rect key="frame" x="474" y="401" width="150" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="pd2-Sw-xmg"/>
                                 </constraints>
@@ -880,7 +846,7 @@
                                 </tokenFieldCell>
                             </tokenField>
                             <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LXo-YV-EDG">
-                                <rect key="frame" x="507" y="435" width="120" height="23"/>
+                                <rect key="frame" x="507" y="428" width="120" height="23"/>
                                 <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="XFS-21-sO4">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -896,7 +862,7 @@
                                 </connections>
                             </comboBox>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="snr-gy-H7a">
-                                <rect key="frame" x="472" y="439" width="30" height="16"/>
+                                <rect key="frame" x="472" y="432" width="30" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Sort" id="Gb7-Wg-U3f">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -905,6 +871,7 @@
                             </textField>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="Zez-1e-4Y4" firstAttribute="top" secondItem="NF6-hi-Qj9" secondAttribute="bottom" constant="10" id="0ak-9B-eog"/>
                             <constraint firstItem="rIe-xT-0GM" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" symbolic="YES" id="4lV-kE-k5Z"/>
                             <constraint firstAttribute="trailing" secondItem="Bal-uD-LD6" secondAttribute="trailing" constant="20" symbolic="YES" id="5vc-tv-3IE"/>
                             <constraint firstItem="rIe-xT-0GM" firstAttribute="width" secondItem="Zez-1e-4Y4" secondAttribute="width" multiplier="0.5" id="6d4-uc-jeL"/>
@@ -915,7 +882,6 @@
                             <constraint firstItem="hBu-hj-Ghb" firstAttribute="top" secondItem="fOA-W5-4z2" secondAttribute="bottom" constant="8" symbolic="YES" id="I3M-Ca-JbD"/>
                             <constraint firstItem="Bal-uD-LD6" firstAttribute="top" secondItem="LXo-YV-EDG" secondAttribute="bottom" constant="8" symbolic="YES" id="RtQ-Hx-84J"/>
                             <constraint firstItem="LXo-YV-EDG" firstAttribute="firstBaseline" secondItem="snr-gy-H7a" secondAttribute="firstBaseline" id="UbO-B9-wAT"/>
-                            <constraint firstItem="Zez-1e-4Y4" firstAttribute="top" secondItem="rIe-xT-0GM" secondAttribute="bottom" constant="8" symbolic="YES" id="Y15-FF-4yG"/>
                             <constraint firstItem="Zez-1e-4Y4" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="YFW-xh-iET"/>
                             <constraint firstItem="rIe-xT-0GM" firstAttribute="leading" secondItem="NF6-hi-Qj9" secondAttribute="trailing" constant="8" symbolic="YES" id="eJh-I1-8Lp"/>
                             <constraint firstAttribute="trailing" secondItem="Zez-1e-4Y4" secondAttribute="trailing" constant="20" symbolic="YES" id="jDk-8E-HzP"/>

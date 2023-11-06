@@ -85,12 +85,17 @@ class ViewController: NSViewController, NSCollectionViewDelegate, NSTokenFieldDe
     
     
     @IBAction func openRootFolderButtonPressed(_ sender: Any) {
+        self.showOpenFolderDialog()
+    }
+    
+    func showOpenFolderDialog() {
         let openPanel = NSOpenPanel()
         openPanel.canChooseFiles = false
         openPanel.canChooseDirectories = true
         openPanel.runModal()
         guard let url = openPanel.urls.first else { return }
         self.setRootFolder(url)
+        NSDocumentController.shared.noteNewRecentDocumentURL(url)
     }
     
     @IBAction func iconSizeSliderChanged(_ sender: Any) {
@@ -99,7 +104,7 @@ class ViewController: NSViewController, NSCollectionViewDelegate, NSTokenFieldDe
     }
     
     func updateIconSizes(iconSizePercent: Float) {
-        let size = CGFloat(50 + iconSizePercent * 300)
+        let size = CGFloat(120 + iconSizePercent * 800)
 
         let layout = (self.filesCollectionView.collectionViewLayout as? NSCollectionViewFlowLayout) ?? NSCollectionViewFlowLayout()
         layout.itemSize = CGSize(width: size, height: size)

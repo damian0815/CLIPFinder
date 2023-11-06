@@ -14,6 +14,8 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     
+    var viewController: ViewController { return NSApplication.shared.mainWindow!.contentViewController! as! ViewController }
+
 
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -34,7 +36,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
         return true
     }
+    
+    func application(_ application: NSApplication, open urls: [URL]) {
+        self.viewController.setRootFolder(urls.first!)
+    }
 
-
+    @IBAction func openMenuItemSelected(_ sender: Any) {
+        self.viewController.showOpenFolderDialog()
+    }
+    
 }
 
