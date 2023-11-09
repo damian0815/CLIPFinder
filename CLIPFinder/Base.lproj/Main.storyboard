@@ -668,17 +668,17 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="CLIPFinder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="644" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="624" height="600"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fOA-W5-4z2">
-                                <rect key="frame" x="20" y="48" width="446" height="402"/>
+                                <rect key="frame" x="20" y="48" width="426" height="388"/>
                                 <clipView key="contentView" id="VGE-XA-kBq">
-                                    <rect key="frame" x="1" y="1" width="444" height="400"/>
+                                    <rect key="frame" x="1" y="1" width="424" height="386"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <collectionView selectable="YES" allowsMultipleSelection="YES" id="xbC-jT-xgF">
-                                            <rect key="frame" x="0.0" y="0.0" width="444" height="400"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="424" height="386"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="J2l-vt-tsa">
                                                 <size key="itemSize" width="100" height="50"/>
@@ -696,18 +696,18 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="UP5-L4-dHe">
-                                    <rect key="frame" x="429" y="1" width="16" height="390"/>
+                                    <rect key="frame" x="409" y="1" width="16" height="386"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zez-1e-4Y4">
-                                <rect key="frame" x="20" y="458" width="604" height="86"/>
+                                <rect key="frame" x="20" y="444" width="584" height="100"/>
                                 <clipView key="contentView" id="MQr-3w-W4g">
-                                    <rect key="frame" x="1" y="1" width="602" height="84"/>
+                                    <rect key="frame" x="1" y="1" width="582" height="98"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <predicateEditor verticalHuggingPriority="750" nestingMode="compound" canRemoveAllRows="YES" rowHeight="32" id="b5Y-ur-NqZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="602" height="84"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="582" height="96"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <rowTemplates>
                                                 <predicateEditorRowTemplate rowType="compound" id="oXE-ct-1rf">
@@ -719,6 +719,9 @@
                                                                 </menuItem>
                                                                 <menuItem title="All" id="NVB-Wl-bnk">
                                                                     <integer key="representedObject" value="1"/>
+                                                                </menuItem>
+                                                                <menuItem title="None" id="tJf-L9-V8v">
+                                                                    <integer key="representedObject" value="0"/>
                                                                 </menuItem>
                                                             </items>
                                                         </menu>
@@ -732,32 +735,32 @@
                                                 <predicateEditorRowTemplate rowType="simple" id="XH0-rm-iuh">
                                                     <array key="leftExpressionObject">
                                                         <expression type="keyPath">
-                                                            <string key="keyPath">name</string>
+                                                            <string key="keyPath">tag</string>
                                                         </expression>
                                                         <expression type="keyPath">
-                                                            <string key="keyPath">address</string>
+                                                            <string key="keyPath">filename</string>
                                                         </expression>
                                                         <expression type="keyPath">
-                                                            <string key="keyPath">sign</string>
+                                                            <string key="keyPath">spotlightComment</string>
                                                         </expression>
                                                     </array>
                                                     <integer key="rightExpressionObject" value="700"/>
                                                     <popUpMenus>
                                                         <menu id="ZOn-6n-kQZ">
                                                             <items>
-                                                                <menuItem title="name" state="on" id="DbO-Vl-qL5">
+                                                                <menuItem title="tag" state="on" id="DbO-Vl-qL5" userLabel="tag">
                                                                     <expression key="representedObject" type="keyPath">
-                                                                        <string key="keyPath">name</string>
+                                                                        <string key="keyPath">tag</string>
                                                                     </expression>
                                                                 </menuItem>
-                                                                <menuItem title="address" id="mgE-Is-4gE">
+                                                                <menuItem title="filename" id="mgE-Is-4gE" userLabel="filename">
                                                                     <expression key="representedObject" type="keyPath">
-                                                                        <string key="keyPath">address</string>
+                                                                        <string key="keyPath">filename</string>
                                                                     </expression>
                                                                 </menuItem>
-                                                                <menuItem title="sign" id="oeq-ow-zDc">
+                                                                <menuItem title="spotlight comment" id="oeq-ow-zDc" userLabel="spotlight comment">
                                                                     <expression key="representedObject" type="keyPath">
-                                                                        <string key="keyPath">sign</string>
+                                                                        <string key="keyPath">spotlightComment</string>
                                                                     </expression>
                                                                 </menuItem>
                                                             </items>
@@ -783,19 +786,45 @@
                                                         </menu>
                                                     </popUpMenus>
                                                 </predicateEditorRowTemplate>
+                                                <predicateEditorRowTemplate rowType="simple" id="jRm-DZ-fZu">
+                                                    <array key="leftExpressionObject">
+                                                        <expression type="keyPath">
+                                                            <string key="keyPath">CLIP embedding</string>
+                                                        </expression>
+                                                    </array>
+                                                    <integer key="rightExpressionObject" value="700"/>
+                                                    <popUpMenus>
+                                                        <menu id="cff-AE-3Mr">
+                                                            <items>
+                                                                <menuItem title="CLIP embedding" state="on" id="Q5q-Zx-rqg">
+                                                                    <expression key="representedObject" type="keyPath">
+                                                                        <string key="keyPath">CLIP embedding</string>
+                                                                    </expression>
+                                                                </menuItem>
+                                                            </items>
+                                                        </menu>
+                                                        <menu id="s1i-Xd-f1p">
+                                                            <items>
+                                                                <menuItem title="is like" state="on" id="J6G-xf-Aek">
+                                                                    <integer key="representedObject" value="7"/>
+                                                                </menuItem>
+                                                            </items>
+                                                        </menu>
+                                                    </popUpMenus>
+                                                </predicateEditorRowTemplate>
                                             </rowTemplates>
                                         </predicateEditor>
                                     </subviews>
                                 </clipView>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="86" id="gFw-cO-Nzn"/>
+                                    <constraint firstAttribute="height" constant="100" id="gFw-cO-Nzn"/>
                                 </constraints>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="r4d-Lt-4xg">
                                     <rect key="frame" x="-100" y="-100" width="360" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="s7s-X7-spD">
-                                    <rect key="frame" x="336" y="1" width="15" height="84"/>
+                                    <rect key="frame" x="567" y="1" width="16" height="84"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -814,7 +843,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rIe-xT-0GM">
-                                <rect key="frame" x="62" y="559" width="302" height="21"/>
+                                <rect key="frame" x="62" y="559" width="292" height="21"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="2Yn-Wt-elY">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -825,7 +854,7 @@
                                 </connections>
                             </textField>
                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hBu-hj-Ghb">
-                                <rect key="frame" x="372" y="14" width="96" height="28"/>
+                                <rect key="frame" x="352" y="14" width="96" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="92" id="zHx-1u-hst"/>
                                 </constraints>
@@ -835,7 +864,7 @@
                                 </connections>
                             </slider>
                             <tokenField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Bal-uD-LD6" customClass="AutoExpandingTokenField" customModule="CLIPFinder" customModuleProvider="target">
-                                <rect key="frame" x="474" y="401" width="150" height="21"/>
+                                <rect key="frame" x="454" y="387" width="150" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="pd2-Sw-xmg"/>
                                 </constraints>
@@ -846,7 +875,7 @@
                                 </tokenFieldCell>
                             </tokenField>
                             <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LXo-YV-EDG">
-                                <rect key="frame" x="507" y="428" width="120" height="23"/>
+                                <rect key="frame" x="487" y="414" width="120" height="23"/>
                                 <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="XFS-21-sO4">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -862,7 +891,7 @@
                                 </connections>
                             </comboBox>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="snr-gy-H7a">
-                                <rect key="frame" x="472" y="432" width="30" height="16"/>
+                                <rect key="frame" x="452" y="418" width="30" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Sort" id="Gb7-Wg-U3f">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -905,7 +934,7 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="952"/>
+            <point key="canvasLocation" x="85" y="952"/>
         </scene>
     </scenes>
     <resources>

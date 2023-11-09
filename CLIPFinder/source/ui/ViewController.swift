@@ -8,7 +8,8 @@
 import AppKit
 import UniformTypeIdentifiers
 
-class ViewController: NSViewController, NSCollectionViewDelegate, NSTokenFieldDelegate {
+class ViewController: NSViewController, NSCollectionViewDelegate, NSTokenFieldDelegate, NSRuleEditorDelegate {
+
     
     @IBOutlet weak var filesCollectionView: NSCollectionView!
     @IBOutlet weak var predicateEditor: NSPredicateEditor!
@@ -23,6 +24,7 @@ class ViewController: NSViewController, NSCollectionViewDelegate, NSTokenFieldDe
     var searchResultsProvider: SearchResultsProviderProtocol? = nil
     
     var selectedFiles: [FileInfo] = []
+    var currentFilterPredicate: NSPredicate? = nil
     
     //let tagsAutocompleteProvider = TagsAutocompleteProvider()
     
@@ -60,6 +62,11 @@ class ViewController: NSViewController, NSCollectionViewDelegate, NSTokenFieldDe
         self.tagsTokenFieldController = TagsTokenFieldController(tagsTokenField: self.tagsTokenField)
         self.tagsTokenFieldController.sortOrder = .ByFrequency
         self.tagsTokenField.delegate = self.tagsTokenFieldController
+        
+        self.predicateEditor.objectValue = NSCompoundPredicate(type: .or, subpredicates: [])
+        self.currentFilterPredicate = self.predicateEditor.objectValue
+        self.predicateEditor.delegate = self
+        
     }
     
     override var representedObject: Any? {
@@ -73,13 +80,31 @@ class ViewController: NSViewController, NSCollectionViewDelegate, NSTokenFieldDe
         self.updateSearchResults()
     }
     
+    func updateSearchResults() {
+        Task { @MainActor in
+            await self.searchResultsProvider?.setRootFolder(self.rootFolderTextField.stringValue)
+        }
+    }
+    
+    // MARK: UI activity responses
+    
     @IBAction func rootFolderTextFieldDidChange(_ sender: Any) {
         self.updateSearchResults()
     }
     
-    func updateSearchResults() {
-        Task { @MainActor in
-            await self.searchResultsProvider?.setRootFolder(self.rootFolderTextField.stringValue)
+    @IBAction func tagSortComboBoxChanged(_ sender: Any) {
+        print("todo: handle tag sort change")
+        let tagSortComboBox = sender as! NSComboBox
+        let sortOrderString = tagSortComboBox.stringValue
+        switch sortOrderString {
+        case "Alphabetical":
+            self.tagsTokenFieldController.sortOrder = .Alphabetical
+        case "Original":
+            self.tagsTokenFieldController.sortOrder = .Original
+        case "By frequency":
+            self.tagsTokenFieldController.sortOrder = .ByFrequency
+        default:
+            assert(false, "Missing case")
         }
     }
     
@@ -111,6 +136,8 @@ class ViewController: NSViewController, NSCollectionViewDelegate, NSTokenFieldDe
         self.filesCollectionView.collectionViewLayout = layout
     }
     
+    // MARK: collection view delegate
+    
     func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
         print("selected \(indexPaths)")
         
@@ -132,21 +159,31 @@ class ViewController: NSViewController, NSCollectionViewDelegate, NSTokenFieldDe
     }
     
 
-    @IBAction func tagSortComboBoxChanged(_ sender: Any) {
-        print("todo: handle tag sort change")
-        let tagSortComboBox = sender as! NSComboBox
-        let sortOrderString = tagSortComboBox.stringValue
-        switch sortOrderString {
-        case "Alphabetical":
-            self.tagsTokenFieldController.sortOrder = .Alphabetical
-        case "Original":
-            self.tagsTokenFieldController.sortOrder = .Original
-        case "By frequency":
-            self.tagsTokenFieldController.sortOrder = .ByFrequency
-        default:
-            assert(false, "Missing case")
-        }
+    // MARK: NSRuleEditorDelegate
+    func ruleEditorRowsDidChange(_ notification: Notification) {
+        let oldPredicate = self.currentFilterPredicate
+        self.currentFilterPredicate = self.predicateEditor.objectValue as? NSPredicate
+        self.undoManager?.registerUndo(withTarget: self.predicateEditor, handler: { predicateEditor in
+            print("undoing predicate to \(oldPredicate)")
+            predicateEditor.objectValue = oldPredicate
+        })
     }
+    
+    func ruleEditor(_ editor: NSRuleEditor, numberOfChildrenForCriterion criterion: Any?, with rowType: NSRuleEditor.RowType) -> Int {
+        // not called with NSPredicateEditor
+        return 0
+    }
+    
+    func ruleEditor(_ editor: NSRuleEditor, child index: Int, forCriterion criterion: Any?, with rowType: NSRuleEditor.RowType) -> Any {
+        // not called with NSPredicateEditor
+        return 0
+    }
+    
+    func ruleEditor(_ editor: NSRuleEditor, displayValueForCriterion criterion: Any, inRow row: Int) -> Any {
+        // not called with NSPredicateEditor
+        return 0
+    }
+    
 }
 
 

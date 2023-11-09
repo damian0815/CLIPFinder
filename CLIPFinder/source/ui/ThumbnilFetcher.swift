@@ -35,15 +35,10 @@ actor ThumbnailFetcher {
                     continue
                 }
 
-                do {
-                    print("making thumbnail with size \(command.size)")
-                    let image = NSImage.init(previewOfFileAtPath: command.url.path(percentEncoded: false), of: command.size, asIcon: false)
-                    print("made thumbnail with size \(command.size)")
-                    command.result(image)
-                } catch {
-                    print("error making thumbnail with size \(command.size): \(error)")
-                    command.result(nil)
-                }
+                print("making thumbnail with size \(command.size)")
+                let image = NSImage.init(previewOfFileAtPath: command.url.path(percentEncoded: false), of: command.size, asIcon: false)
+                print("made thumbnail with size \(command.size)")
+                command.result(image)
             }
             print("command queue done")
         }
