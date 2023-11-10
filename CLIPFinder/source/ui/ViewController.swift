@@ -147,10 +147,10 @@ class ViewController: NSViewController, NSCollectionViewDelegate, NSTokenFieldDe
     }
     
     @IBAction func addPredicateButtonPressed(_ sender: Any) {
-        self.undoManager?.beginUndoGrouping()
-        let currentTopLevelPredicate = self.topLevelPredicate as? NSCompoundPredicate ?? TopLevelPredicate()
-        self.predicateEditor.objectValue = TopLevelPredicate.byAddingEmptyCompoundPredicate(to: currentTopLevelPredicate)
-        self.undoManager?.endUndoGrouping()
+        if self.topLevelPredicate == nil {
+            self.predicateEditor.objectValue = NSPredicate(format: "tag CONTAINS \"\"", argumentArray: nil)
+            self.lastKnownPredicate = self.predicateEditor.objectValue as? NSPredicate
+        }
     }
     
     // MARK: collection view delegate
@@ -188,7 +188,7 @@ class ViewController: NSViewController, NSCollectionViewDelegate, NSTokenFieldDe
         }
         
         if newPredicate != self.lastKnownPredicate {
-            print("storing undo to \(self.lastKnownPredicate), userInfo: \(notification.userInfo)")
+            print("storing undo to \(self.lastKnownPredicate?.predicateFormat), userInfo: \(notification.userInfo)")
             registerPredicateEditUndo(oldPredicate: self.lastKnownPredicate?.copy() as? NSPredicate)
         }
         self.lastKnownPredicate = newPredicate.copy() as? NSPredicate
