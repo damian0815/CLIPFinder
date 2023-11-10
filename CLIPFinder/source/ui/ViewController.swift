@@ -24,8 +24,11 @@ class ViewController: NSViewController, NSCollectionViewDelegate, NSTokenFieldDe
     var searchResultsProvider: SearchResultsProviderProtocol? = nil
     
     var selectedFiles: [FileInfo] = []
-    var currentFilterPredicate: NSPredicate? = nil
-    
+
+    var topLevelPredicate: NSPredicate? { self.predicateEditor.predicate }
+    var lastKnownPredicate: NSPredicate? = nil
+    var topLevelPredicateObservation: NSKeyValueObservation?
+
     //let tagsAutocompleteProvider = TagsAutocompleteProvider()
     
     override func viewDidLoad() {
@@ -63,10 +66,17 @@ class ViewController: NSViewController, NSCollectionViewDelegate, NSTokenFieldDe
         self.tagsTokenFieldController.sortOrder = .ByFrequency
         self.tagsTokenField.delegate = self.tagsTokenFieldController
         
-        self.predicateEditor.objectValue = NSCompoundPredicate(type: .or, subpredicates: [])
-        self.currentFilterPredicate = self.predicateEditor.objectValue
+        /*
+        self.topLevelPredicateObservation = self.observe(\.predicateEditor.objectValue, options: [.old]) { object, change in
+            print("changed \(change.isPrior ? "prior " : "")- \(object) to \(change)")
+            if let oldTopLevel = change.oldValue as? TopLevelPredicate {
+                self.registerPredicateEditUndo(oldPredicate: oldTopLevel)
+            } else {
+                print("can't apply, wrong type")
+            }
+        }*/
         self.predicateEditor.delegate = self
-        
+        self.lastKnownPredicate = self.predicateEditor.objectValue as? NSPredicate
     }
     
     override var representedObject: Any? {
@@ -136,6 +146,13 @@ class ViewController: NSViewController, NSCollectionViewDelegate, NSTokenFieldDe
         self.filesCollectionView.collectionViewLayout = layout
     }
     
+    @IBAction func addPredicateButtonPressed(_ sender: Any) {
+        self.undoManager?.beginUndoGrouping()
+        let currentTopLevelPredicate = self.topLevelPredicate as? NSCompoundPredicate ?? TopLevelPredicate()
+        self.predicateEditor.objectValue = TopLevelPredicate.byAddingEmptyCompoundPredicate(to: currentTopLevelPredicate)
+        self.undoManager?.endUndoGrouping()
+    }
+    
     // MARK: collection view delegate
     
     func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
@@ -160,12 +177,29 @@ class ViewController: NSViewController, NSCollectionViewDelegate, NSTokenFieldDe
     
 
     // MARK: NSRuleEditorDelegate
+
     func ruleEditorRowsDidChange(_ notification: Notification) {
-        let oldPredicate = self.currentFilterPredicate
-        self.currentFilterPredicate = self.predicateEditor.objectValue as? NSPredicate
+        if let undoManager = self.undoManager, undoManager.isUndoing {
+            return
+        }
+
+        guard let newPredicate = self.topLevelPredicate else {
+            return
+        }
+        
+        if newPredicate != self.lastKnownPredicate {
+            print("storing undo to \(self.lastKnownPredicate), userInfo: \(notification.userInfo)")
+            registerPredicateEditUndo(oldPredicate: self.lastKnownPredicate?.copy() as? NSPredicate)
+        }
+        self.lastKnownPredicate = newPredicate.copy() as? NSPredicate
+    }
+    
+    func registerPredicateEditUndo(oldPredicate: NSPredicate?) {
+        //self.currentFilterPredicate = self.predicateEditor.objectValue as? TopLevelPredicate
         self.undoManager?.registerUndo(withTarget: self.predicateEditor, handler: { predicateEditor in
-            print("undoing predicate to \(oldPredicate)")
+            print("undoing predicate to \(String(describing: oldPredicate))")
             predicateEditor.objectValue = oldPredicate
+            self.lastKnownPredicate = oldPredicate?.copy() as? NSPredicate
         })
     }
     
