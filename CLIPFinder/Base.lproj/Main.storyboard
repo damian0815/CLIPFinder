@@ -951,6 +951,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addPredicateButton" destination="Edg-PX-WgM" id="iLZ-V2-wf5"/>
                         <outlet property="filesCollectionView" destination="xbC-jT-xgF" id="yz5-bU-4EL"/>
                         <outlet property="openRootFolderButton" destination="NF6-hi-Qj9" id="qvk-Xz-PL5"/>
                         <outlet property="predicateEditor" destination="b5Y-ur-NqZ" id="yZ4-nC-qj2"/>

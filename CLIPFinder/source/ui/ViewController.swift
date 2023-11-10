@@ -13,6 +13,7 @@ class ViewController: NSViewController, NSCollectionViewDelegate, NSTokenFieldDe
     
     @IBOutlet weak var filesCollectionView: NSCollectionView!
     @IBOutlet weak var predicateEditor: NSPredicateEditor!
+    @IBOutlet weak var addPredicateButton: NSButton!
     @IBOutlet weak var rootFolderTextField: NSTextField!
     @IBOutlet weak var tagsTokenField: AutoExpandingTokenField!
     @IBOutlet weak var sortOrderComboBox: NSComboBox!
@@ -66,15 +67,6 @@ class ViewController: NSViewController, NSCollectionViewDelegate, NSTokenFieldDe
         self.tagsTokenFieldController.sortOrder = .ByFrequency
         self.tagsTokenField.delegate = self.tagsTokenFieldController
         
-        /*
-        self.topLevelPredicateObservation = self.observe(\.predicateEditor.objectValue, options: [.old]) { object, change in
-            print("changed \(change.isPrior ? "prior " : "")- \(object) to \(change)")
-            if let oldTopLevel = change.oldValue as? TopLevelPredicate {
-                self.registerPredicateEditUndo(oldPredicate: oldTopLevel)
-            } else {
-                print("can't apply, wrong type")
-            }
-        }*/
         self.predicateEditor.delegate = self
         self.lastKnownPredicate = self.predicateEditor.objectValue as? NSPredicate
     }
@@ -148,8 +140,12 @@ class ViewController: NSViewController, NSCollectionViewDelegate, NSTokenFieldDe
     
     @IBAction func addPredicateButtonPressed(_ sender: Any) {
         if self.topLevelPredicate == nil {
-            self.predicateEditor.objectValue = NSPredicate(format: "tag CONTAINS \"\"", argumentArray: nil)
+            self.predicateEditor.addRow(self)
+            //self.predicateEditor.objectValue = NSPredicate(format: "tag CONTAINS \"\"", argumentArray: nil)
             self.lastKnownPredicate = self.predicateEditor.objectValue as? NSPredicate
+        } else {
+            self.predicateEditor.objectValue = nil
+            self.lastKnownPredicate = nil
         }
     }
     
@@ -179,25 +175,22 @@ class ViewController: NSViewController, NSCollectionViewDelegate, NSTokenFieldDe
     // MARK: NSRuleEditorDelegate
 
     func ruleEditorRowsDidChange(_ notification: Notification) {
-        if let undoManager = self.undoManager, undoManager.isUndoing {
-            return
-        }
-
-        guard let newPredicate = self.topLevelPredicate else {
-            return
-        }
         
+        let newPredicate = self.topLevelPredicate
         if newPredicate != self.lastKnownPredicate {
-            print("storing undo to \(self.lastKnownPredicate?.predicateFormat), userInfo: \(notification.userInfo)")
+            //print("storing undo to \(self.lastKnownPredicate?.predicateFormat), userInfo: \(notification.userInfo)")
             registerPredicateEditUndo(oldPredicate: self.lastKnownPredicate?.copy() as? NSPredicate)
         }
-        self.lastKnownPredicate = newPredicate.copy() as? NSPredicate
+        self.lastKnownPredicate = newPredicate?.copy() as? NSPredicate
+        if newPredicate == nil {
+            self.addPredicateButton.image = NSImage(systemSymbolName: "plus", accessibilityDescription: "Add Search Predicates")
+        } else {
+            self.addPredicateButton.image = NSImage(systemSymbolName: "minus", accessibilityDescription: "Remove Search Predicates")
+        }
     }
     
     func registerPredicateEditUndo(oldPredicate: NSPredicate?) {
-        //self.currentFilterPredicate = self.predicateEditor.objectValue as? TopLevelPredicate
         self.undoManager?.registerUndo(withTarget: self.predicateEditor, handler: { predicateEditor in
-            print("undoing predicate to \(String(describing: oldPredicate))")
             predicateEditor.objectValue = oldPredicate
             self.lastKnownPredicate = oldPredicate?.copy() as? NSPredicate
         })
