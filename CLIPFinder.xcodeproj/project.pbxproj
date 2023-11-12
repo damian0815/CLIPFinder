@@ -9,11 +9,16 @@
 /* Begin PBXBuildFile section */
 		2D14EEA22AF59DAA0094209E /* AutoExpandingTokenField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D14EEA12AF59DAA0094209E /* AutoExpandingTokenField.swift */; };
 		2D14EEA42AF5B65C0094209E /* NSImage+QuickLook.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D14EEA32AF5B65C0094209E /* NSImage+QuickLook.m */; };
+		2D2B9CC42B0165150074B10E /* CLIPTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2B9CC32B0165150074B10E /* CLIPTokenizer.swift */; };
+		2D2B9CC72B01665C0074B10E /* CLIPScorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2B9CC62B01665C0074B10E /* CLIPScorer.swift */; };
+		2D2B9CCB2B0180E50074B10E /* TextEncoder_float32_test.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 2D2B9CC92B0180DD0074B10E /* TextEncoder_float32_test.mlpackage */; };
+		2D2B9CCC2B0180E50074B10E /* ImageEncoder_float32.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 2D2B9CCA2B0180E50074B10E /* ImageEncoder_float32.mlpackage */; };
 		2DA686F12AF68FAA002C1D83 /* TagsTokenFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA686F02AF68FAA002C1D83 /* TagsTokenFieldController.swift */; };
 		2DA686F32AF76F78002C1D83 /* TagsAndColorsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA686F22AF76F78002C1D83 /* TagsAndColorsProvider.swift */; };
 		2DA686F92AF78276002C1D83 /* XAttr in Frameworks */ = {isa = PBXBuildFile; productRef = 2DA686F82AF78276002C1D83 /* XAttr */; };
 		2DA686FC2AF8E6C8002C1D83 /* ThumbnailFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA686FB2AF8E6C8002C1D83 /* ThumbnailFetcher.swift */; };
 		2DA686FF2AF8ED1C002C1D83 /* AsyncExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 2DA686FE2AF8ED1C002C1D83 /* AsyncExtensions */; };
+		2DBC91D02B0003EF004E8354 /* PredicateEditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBC91CF2B0003EF004E8354 /* PredicateEditorController.swift */; };
 		2DEC2C8B2AF4385A00E4C35E /* FileCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEC2C892AF4385A00E4C35E /* FileCollectionViewItem.swift */; };
 		2DEC2C8C2AF4385A00E4C35E /* FileCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DEC2C8A2AF4385A00E4C35E /* FileCollectionViewItem.xib */; };
 		2DEC2C8E2AF43AF900E4C35E /* AutoCompleteTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEC2C8D2AF43AF900E4C35E /* AutoCompleteTextField.swift */; };
@@ -30,10 +35,15 @@
 		2D14EEA12AF59DAA0094209E /* AutoExpandingTokenField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoExpandingTokenField.swift; sourceTree = "<group>"; };
 		2D14EEA32AF5B65C0094209E /* NSImage+QuickLook.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSImage+QuickLook.m"; sourceTree = "<group>"; };
 		2D14EEA52AF5B6760094209E /* NSImage+QuickLook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSImage+QuickLook.h"; sourceTree = "<group>"; };
+		2D2B9CC32B0165150074B10E /* CLIPTokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLIPTokenizer.swift; sourceTree = "<group>"; };
+		2D2B9CC62B01665C0074B10E /* CLIPScorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLIPScorer.swift; sourceTree = "<group>"; };
+		2D2B9CC92B0180DD0074B10E /* TextEncoder_float32_test.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = TextEncoder_float32_test.mlpackage; sourceTree = "<group>"; };
+		2D2B9CCA2B0180E50074B10E /* ImageEncoder_float32.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = ImageEncoder_float32.mlpackage; sourceTree = "<group>"; };
 		2DA686F02AF68FAA002C1D83 /* TagsTokenFieldController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsTokenFieldController.swift; sourceTree = "<group>"; };
 		2DA686F22AF76F78002C1D83 /* TagsAndColorsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsAndColorsProvider.swift; sourceTree = "<group>"; };
 		2DA686FA2AF8E2A3002C1D83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2DA686FB2AF8E6C8002C1D83 /* ThumbnailFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailFetcher.swift; sourceTree = "<group>"; };
+		2DBC91CF2B0003EF004E8354 /* PredicateEditorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredicateEditorController.swift; sourceTree = "<group>"; };
 		2DEC2C892AF4385A00E4C35E /* FileCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCollectionViewItem.swift; sourceTree = "<group>"; };
 		2DEC2C8A2AF4385A00E4C35E /* FileCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FileCollectionViewItem.xib; sourceTree = "<group>"; };
 		2DEC2C8D2AF43AF900E4C35E /* AutoCompleteTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoCompleteTextField.swift; sourceTree = "<group>"; };
@@ -65,12 +75,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D2B9CC52B0165210074B10E /* swift-coreml-transformers */ = {
+			isa = PBXGroup;
+			children = (
+				2D2B9CC32B0165150074B10E /* CLIPTokenizer.swift */,
+			);
+			path = "swift-coreml-transformers";
+			sourceTree = "<group>";
+		};
+		2D2B9CC82B0180CC0074B10E /* models */ = {
+			isa = PBXGroup;
+			children = (
+				2D2B9CCA2B0180E50074B10E /* ImageEncoder_float32.mlpackage */,
+				2D2B9CC92B0180DD0074B10E /* TextEncoder_float32_test.mlpackage */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
 		2DA686F42AF76F83002C1D83 /* logic */ = {
 			isa = PBXGroup;
 			children = (
 				2DA686F22AF76F78002C1D83 /* TagsAndColorsProvider.swift */,
 				2DEC2C8F2AF43D5A00E4C35E /* FoldersAutocompleteProvider.swift */,
 				2DEC2C9B2AF4EBD500E4C35E /* SearchResultsProvider.swift */,
+				2D2B9CC62B01665C0074B10E /* CLIPScorer.swift */,
 			);
 			path = logic;
 			sourceTree = "<group>";
@@ -78,6 +106,7 @@
 		2DEC2C752AF42F3A00E4C35E /* source */ = {
 			isa = PBXGroup;
 			children = (
+				2D2B9CC82B0180CC0074B10E /* models */,
 				2DA686F42AF76F83002C1D83 /* logic */,
 				2DEC2C9A2AF4EBB600E4C35E /* ui */,
 				2DEC2C912AF4421900E4C35E /* 3rdparty */,
@@ -89,6 +118,7 @@
 		2DEC2C912AF4421900E4C35E /* 3rdparty */ = {
 			isa = PBXGroup;
 			children = (
+				2D2B9CC52B0165210074B10E /* swift-coreml-transformers */,
 				2DEC2C982AF442B800E4C35E /* MPAuthorizer */,
 				2DEC2C922AF4423900E4C35E /* CLIPFinder-Bridging-Header.h */,
 				2D14EEA32AF5B65C0094209E /* NSImage+QuickLook.m */,
@@ -118,6 +148,7 @@
 				2D14EEA12AF59DAA0094209E /* AutoExpandingTokenField.swift */,
 				2DA686F02AF68FAA002C1D83 /* TagsTokenFieldController.swift */,
 				2DA686FB2AF8E6C8002C1D83 /* ThumbnailFetcher.swift */,
+				2DBC91CF2B0003EF004E8354 /* PredicateEditorController.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -231,17 +262,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DEC2C902AF43D5A00E4C35E /* FoldersAutocompleteProvider.swift in Sources */,
+				2D2B9CC42B0165150074B10E /* CLIPTokenizer.swift in Sources */,
 				2DA686F32AF76F78002C1D83 /* TagsAndColorsProvider.swift in Sources */,
 				2D14EEA22AF59DAA0094209E /* AutoExpandingTokenField.swift in Sources */,
 				2DEC2C9C2AF4EBD500E4C35E /* SearchResultsProvider.swift in Sources */,
 				2DA686FC2AF8E6C8002C1D83 /* ThumbnailFetcher.swift in Sources */,
 				2DF99FB12AF3928C00679E86 /* ViewController.swift in Sources */,
 				2DEC2C942AF4423A00E4C35E /* MPFullDiskAccessAuthorizer.m in Sources */,
+				2D2B9CC72B01665C0074B10E /* CLIPScorer.swift in Sources */,
 				2D14EEA42AF5B65C0094209E /* NSImage+QuickLook.m in Sources */,
 				2DA686F12AF68FAA002C1D83 /* TagsTokenFieldController.swift in Sources */,
 				2DEC2C8E2AF43AF900E4C35E /* AutoCompleteTextField.swift in Sources */,
 				2DEC2C8B2AF4385A00E4C35E /* FileCollectionViewItem.swift in Sources */,
 				2DF99FAF2AF3928C00679E86 /* AppDelegate.swift in Sources */,
+				2DBC91D02B0003EF004E8354 /* PredicateEditorController.swift in Sources */,
+				2D2B9CCB2B0180E50074B10E /* TextEncoder_float32_test.mlpackage in Sources */,
+				2D2B9CCC2B0180E50074B10E /* ImageEncoder_float32.mlpackage in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
